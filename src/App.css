@@ -83,9 +83,79 @@
 }
 
 .flipbook-wrap {
+  position: relative;
   width: 92vw;
   height: 100%;
   padding: 20px 0;
+}
+
+/* --- Flipsnack-style edge navigation arrows --- */
+.edge-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) scale(0.9);
+  z-index: 10;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(2px);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  /* hidden at rest; revealed when the reader hovers the book (see :hover rules below) */
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.15s ease, background 0.15s ease;
+}
+
+.edge-nav.left {
+  left: 16px;
+}
+
+.edge-nav.right {
+  right: 16px;
+}
+
+/* reveal on hover of the book area */
+.flipbook-wrap:hover .edge-nav:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-50%) scale(1);
+}
+
+/* stronger affordance when hovering the arrow itself */
+.edge-nav:not(:disabled):hover {
+  opacity: 1;
+  background: rgba(74, 144, 217, 0.9);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.edge-nav:not(:disabled):active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+/* at the first/last page: keep the arrow faintly visible on hover so the boundary is
+   obvious, but clearly non-interactive */
+.flipbook-wrap:hover .edge-nav:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+.edge-nav:disabled {
+  opacity: 0;
+}
+
+/* touch devices have no hover — keep the arrows gently visible so they're discoverable */
+@media (hover: none) {
+  .edge-nav:not(:disabled) {
+    opacity: 0.6;
+    transform: translateY(-50%) scale(1);
+  }
+  .edge-nav:disabled {
+    opacity: 0.2;
+  }
 }
 
 /* the viewport fills the wrapper */

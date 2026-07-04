@@ -3,6 +3,22 @@ import { Flipbook, type FlipbookHandle, type FlipbookSlot } from './flipbook'
 import { renderPdf, type RenderProgress } from './pdf/renderPdf'
 import './App.css'
 
+/** Crisp chevron glyph for the edge navigation arrows. */
+function Chevron({ dir }: { dir: 'left' | 'right' }) {
+  return (
+    <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+      <path
+        d={dir === 'left' ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7'}
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
 export default function App() {
   const [pages, setPages] = useState<(string | null)[]>([])
   const [loading, setLoading] = useState(false)
@@ -133,6 +149,27 @@ export default function App() {
               onFlipLeftEnd={(p) => (window.location.hash = '#' + p)}
               onFlipRightEnd={(p) => (window.location.hash = '#' + p)}
             />
+
+            {/* Flipsnack-style edge arrows: overlay the left/right edges of the flip
+                area, fade in on hover, dim when there's nowhere left to go. They sit
+                above the viewport so a click flips the page (never triggers zoom). The
+                flip effect itself is untouched — these just call the imperative handle. */}
+            <button
+              className="edge-nav left"
+              disabled={!slot.canFlipLeft}
+              onClick={() => fb.current?.flipLeft()}
+              aria-label="Previous page"
+            >
+              <Chevron dir="left" />
+            </button>
+            <button
+              className="edge-nav right"
+              disabled={!slot.canFlipRight}
+              onClick={() => fb.current?.flipRight()}
+              aria-label="Next page"
+            >
+              <Chevron dir="right" />
+            </button>
           </div>
         )}
       </main>
