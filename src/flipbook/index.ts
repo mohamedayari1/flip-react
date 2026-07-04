@@ -1,0 +1,6 @@
+export { default as Flipbook } from './Flipbook'
+export type { FlipbookProps, FlipbookHandle, FlipbookSlot } from './Flipbook'
+export { computePolygons } from './geometry'
+export type { PolygonSpec, ComputePolygonsOptions } from './geometry'
+export { computeLighting } from './lighting'
+export { default as Matrix } from './matrix'

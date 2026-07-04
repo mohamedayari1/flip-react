@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/main.tsx","./src/vite-env.d.ts","./src/flipbook/Flipbook.tsx","./src/flipbook/geometry.test.ts","./src/flipbook/geometry.ts","./src/flipbook/index.ts","./src/flipbook/lighting.test.ts","./src/flipbook/lighting.ts","./src/flipbook/matrix.test.ts","./src/flipbook/matrix.ts","./src/pdf/renderPdf.ts"],"version":"5.9.3"}

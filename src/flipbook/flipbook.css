@@ -1,0 +1,75 @@
+/*
+ * Ported from flipbook-vue <style scoped> block (src/Flipbook.vue).
+ * Original: Copyright (c) Takeshi Sone, MIT License.
+ */
+
+.fb-viewport {
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  height: 100%;
+  /* perspective is applied inline from the `perspective` prop — it MUST live on the
+     ancestor of the transformed strips, not on the strips themselves. */
+}
+
+.fb-viewport.fb-zoom {
+  overflow: scroll;
+}
+
+.fb-viewport.fb-zoom.fb-drag-to-scroll {
+  overflow: hidden;
+}
+
+.fb-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: top left;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.fb-click-to-flip {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  user-select: none;
+}
+
+.fb-click-to-flip.left {
+  left: 0;
+}
+
+.fb-click-to-flip.right {
+  right: 0;
+}
+
+.fb-bounding-box {
+  position: absolute;
+  user-select: none;
+}
+
+.fb-page {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.fb-polygon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-origin: center left;
+  will-change: transform;
+}
+
+.fb-polygon.blank {
+  background-color: #ddd;
+}
+
+.fb-polygon .fb-lighting {
+  width: 100%;
+  height: 100%;
+}
