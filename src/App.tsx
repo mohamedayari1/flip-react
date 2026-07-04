@@ -145,6 +145,7 @@ export default function App() {
             <Flipbook
               ref={fb}
               pages={pages}
+              flipDuration={600}
               onStateChange={setSlot}
               onFlipLeftEnd={(p) => (window.location.hash = '#' + p)}
               onFlipRightEnd={(p) => (window.location.hash = '#' + p)}
